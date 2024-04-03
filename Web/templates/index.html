@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malware Detector</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #000;
+            color: #0f0; /* Green text color */
+            font-family: 'Courier New', monospace; /* Monospace font for a techy look */
+        }
+
+        .container {
+            max-width: 600px; /* Limit container width for better readability */
+        }
+
+        h1 {
+            color: #0f0; /* Green heading color */
+            font-size: 3rem; /* Larger font size for heading */
+            text-shadow: 2px 2px 4px #00ff00; /* Text shadow for a glowing effect */
+            overflow: hidden; /* Hide overflow to create typing effect */
+            white-space: nowrap; /* Prevent wrapping */
+            border-right: 2px solid #0f0; /* Simulate typing cursor */
+            animation: typing 5s steps(28, end), glitch 5s infinite alternate-reverse; /* Animation for typing and glitch effect */
+        }
+
+        /* Keyframe animation for typing effect */
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Keyframe animation for glitch effect */
+        @keyframes glitch {
+            0% {
+                transform: none;
+            }
+            5% {
+                transform: skewX(-10deg) scale(1.1);
+            }
+            10% {
+                transform: skewX(5deg) scale(1.2);
+            }
+            15% {
+                transform: skewX(-10deg) scale(1.1);
+            }
+            20% {
+                transform: skewX(5deg) scale(1.2);
+            }
+            100% {
+                transform: none;
+            }
+        }
+
+        .btn-primary {
+            background-color: #0f0; /* Green button background */
+            border-color: #0f0; /* Green button border */
+            text-transform: uppercase; /* Convert button text to uppercase */
+            letter-spacing: 2px; /* Increase letter spacing for a techy look */
+            transition: all 0.3s ease-in-out; /* Smooth transition for button hover effect */
+            animation: glitch 1s infinite linear; /* Add glitch animation to button */
+        }
+
+        /* Animation for button */
+        .btn-primary:hover {
+            animation-play-state: paused; /* Pause glitch animation on hover */
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            25% {
+                transform: translate(-2px, 2px);
+            }
+            50% {
+                transform: translate(2px, -2px);
+            }
+            75% {
+                transform: translate(-2px, 2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">Malware Detector</h1>
+        <div class="text-center">
+            <a href="detect" class="btn btn-primary btn-lg">Detect Malware</a>
+        </div>
+    </div>
+</body>
+</html>

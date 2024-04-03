@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detect Malware</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #000;
+            color: #0f0; /* Green text color */
+            font-family: 'Courier New', monospace; /* Monospace font for a techy look */
+        }
+
+        .container {
+            max-width: 600px; /* Limit container width for better readability */
+        }
+
+        h1 {
+            color: #0f0; /* Green heading color */
+            font-size: 3rem; /* Larger font size for heading */
+            text-shadow: 2px 2px 4px #00ff00; /* Text shadow for a glowing effect */
+            margin-bottom: 3rem; /* Add space below the heading */
+            animation: glitch 2s infinite linear; /* Glitch animation for heading */
+        }
+
+        /* Animation for heading */
+        @keyframes glitch {
+            0% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px) rotate(1deg);
+            }
+            50% {
+                transform: translateX(5px) rotate(-1deg);
+            }
+            75% {
+                transform: translateX(-2px) rotate(1deg);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .custom-file-input {
+            opacity: 0; /* Hide default file input */
+            width: 0.1px;
+            height: 0.1px;
+            position: absolute;
+            z-index: -1;
+        }
+
+        label[for="apk_file"], label[for="features_file"] {
+            background-color: #0f0; /* Green background for file input labels */
+            color: #000; /* Black text color */
+            padding: 0.5rem 1rem; /* Add padding to labels */
+            border-radius: 0.5rem; /* Rounded corners for labels */
+            transition: all 0.3s ease-in-out; /* Smooth transition for label hover effect */
+            cursor: pointer; /* Change cursor to pointer on hover */
+            margin-bottom: 1rem; /* Add space below labels */
+            display: block; /* Make labels display as block elements */
+            text-align: center; /* Center align label text */
+        }
+
+        label[for="apk_file"]:hover, label[for="features_file"]:hover {
+            background-color: #00ff00; /* Light green background on hover */
+        }
+
+        .btn-primary {
+            background-color: #0f0; /* Green button background */
+            border-color: #0f0; /* Green button border */
+            text-transform: uppercase; /* Convert button text to uppercase */
+            letter-spacing: 2px; /* Increase letter spacing for a techy look */
+            transition: all 0.3s ease-in-out; /* Smooth transition for button hover effect */
+            animation: glitch 1s infinite linear; /* Add glitch animation to button */
+        }
+
+        /* Animation for button */
+        .btn-primary:hover {
+            animation-play-state: paused; /* Pause glitch animation on hover */
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            25% {
+                transform: translate(-2px, 2px);
+            }
+            50% {
+                transform: translate(2px, -2px);
+            }
+            75% {
+                transform: translate(-2px, 2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+        
+        /* Center the button */
+        .center-btn {
+            text-align: center;
+        }
+        
+        /* Additional animation for button */
+        .detect-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">Upload APK and Features Files</h1>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="apk_file" id="apk_file_label">Choose APK File</label>
+                <input type="file" class="custom-file-input" id="apk_file" name="apk_file" onchange="updateLabel('apk_file', 'apk_file_label')">
+            </div>
+            <div class="form-group">
+                <label for="features_file" id="features_file_label">Choose Features File</label>
+                <input type="file" class="custom-file-input" id="features_file" name="features_file" onchange="updateLabel('features_file', 'features_file_label')">
+            </div>
+            <div class="center-btn"> <!-- Center the button -->
+                <button type="submit" class="btn btn-primary detect-animation">Detect</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function updateLabel(inputId, labelId) {
+            const input = document.getElementById(inputId);
+            const label = document.getElementById(labelId);
+            const fileName = input.files[0].name;
+            label.textContent = fileName;
+        }
+    </script>
+</body>
+</html>

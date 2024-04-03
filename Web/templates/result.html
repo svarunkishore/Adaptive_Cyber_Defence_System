@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detection Result</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #000;
+            color: #0f0; /* Green text color */
+            font-family: 'Courier New', monospace; /* Monospace font for a techy look */
+        }
+
+        .container {
+            max-width: 600px; /* Limit container width for better readability */
+        }
+
+        h1 {
+            color: #0f0; /* Green heading color */
+            font-size: 3rem; /* Larger font size for heading */
+            text-shadow: 2px 2px 4px #00ff00; /* Text shadow for a glowing effect */
+            margin-bottom: 3rem; /* Add space below the heading */
+            animation: glitch 2s infinite linear; /* Glitch animation for heading */
+        }
+
+        /* Animation for heading */
+        @keyframes glitch {
+            0% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px) rotate(1deg);
+            }
+            50% {
+                transform: translateX(5px) rotate(-1deg);
+            }
+            75% {
+                transform: translateX(-2px) rotate(1deg);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .alert {
+            background-color: #222; /* Dark background for the alert */
+            border-color: #0f0; /* Green border color */
+            color: #0f0; /* Green text color */
+            border-radius: 0.5rem; /* Rounded corners for the alert */
+            animation: fadeIn 1s ease-out; /* Fade-in animation for the alert */
+        }
+
+        /* Animation for fade-in effect */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Animation for malware detection */
+        .malware-animation {
+            animation: pulse 1s infinite; /* Pulse animation for malware detection */
+        }
+
+        /* Button styling */
+        .btn-primary {
+            background-color: #0f0; /* Green button background */
+            border-color: #0f0; /* Green button border */
+            text-transform: uppercase; /* Convert button text to uppercase */
+            letter-spacing: 2px; /* Increase letter spacing for a techy look */
+            transition: all 0.3s ease-in-out; /* Smooth transition for button hover effect */
+        }
+
+        /* Button hover effect */
+        .btn-primary:hover {
+            background-color: #00ff00; /* Light green background on hover */
+            border-color: #00ff00; /* Light green border on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">Detection Result</h1>
+        <div class="alert {{ 'malware-animation' if category == 'Malware' else '' }}" role="alert">
+            <h4 class="alert-heading">Result:</h4>
+            <p>{{ result }}</p>
+            <hr>
+            <p class="mb-0">Category: <strong>{{ category }}</strong></p>
+            {% if category == 'Malware' %}
+            <hr>
+            <h4>Features Contributing to Malware Prediction:</h4>
+            <ul>
+                {% for feature, value in app_features.items() %}
+                    {% if value == 1 %}
+                        <li>{{ feature }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        <div class="text-center mt-3">
+            <a href="{{ url_for('index') }}" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
